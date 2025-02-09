@@ -5,6 +5,7 @@ from django.db import IntegrityError
 from django.contrib.auth import login, logout, authenticate
 
 from .forms import TodoForm
+from .models import Todo
 
 
 def home(request):
@@ -61,4 +62,5 @@ def createtodo(request):
 
 
 def currenttodos(request):
-    return render(request, 'todo/currenttodos.html')
+    todos = Todo.objects.filter(user=request.user, datecompleted__isnull=True) # выводим задачи авторизованного пользователя также невыполненные задачи
+    return render(request, 'todo/currenttodos.html', {'todos':todos})
