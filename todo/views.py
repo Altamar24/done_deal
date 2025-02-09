@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.db import IntegrityError
@@ -41,12 +42,14 @@ def loginuser(request):
             return redirect('currenttodos')
 
 
+@login_required # доступ основным функциям только зарегистрированным пользователям
 def logoutuser(request):
     if request.method == 'POST': # если logout будет инициировать GET запрос, браузер его выполнит в фоновом режиме и отменит вход пользователя
         logout(request)
         return redirect('home')
 
 
+@login_required
 def createtodo(request):
     if request.method == 'GET':
         return render(request, 'todo\createtodo.html', {'form': TodoForm()})
@@ -61,16 +64,19 @@ def createtodo(request):
             return render(request, 'todo\createtodo.html', {'form': TodoForm(),'error':'Переданы неверные данные'})
 
 
+@login_required
 def currenttodos(request):
     todos = Todo.objects.filter(user=request.user, datecompleted__isnull=True) # выводим задачи авторизованного пользователя также невыполненные задачи
     return render(request, 'todo/currenttodos.html', {'todos':todos})
 
 
+@login_required
 def completedtodos(request):
     todos = Todo.objects.filter(user=request.user, datecompleted__isnull=False).order_by('datecompleted') # выполненные задачи,сортировка по дате
     return render(request, 'todo/completedtodos.html', {'todos':todos})
 
 
+@login_required
 def viewtodo(request, todo_pk):
     todo = get_object_or_404(Todo, pk=todo_pk, user=request.user)
     if request.method == 'GET':
@@ -85,6 +91,7 @@ def viewtodo(request, todo_pk):
             return render(request, 'todo/viewtodo.html', {'todo':todo, 'form':form, 'error':'Неверная информация'})
    
 
+@login_required
 def completetodo(request, todo_pk):
     todo = get_object_or_404(Todo, pk=todo_pk, user=request.user)
     if request.method == 'POST':
@@ -93,6 +100,7 @@ def completetodo(request, todo_pk):
         return redirect('currenttodos')
 
 
+@login_required
 def deletetodo(request, todo_pk):
     todo = get_object_or_404(Todo, pk=todo_pk, user=request.user)
     if request.method == 'POST':
