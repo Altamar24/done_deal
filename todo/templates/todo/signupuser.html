@@ -1,10 +1,17 @@
+{% extends 'todo/base.html' %}
+
+{% block content %}
+
+
 <h1>Аутентификация</h1>
 
 <h2>{{ error }}</h2>
 
 
-<form method="post">
+<form method="POST">
     {% csrf_token %}
 {{ form.as_p }}
 <button type="submit">Войти</button>
 </form>
+
+{% endblock %}
