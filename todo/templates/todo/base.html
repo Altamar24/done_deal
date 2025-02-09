@@ -9,8 +9,8 @@
 
 {% else %}
 
-<a href="#">Войти</a>
-<a href="#">Зарегистрироваться</a>
+<a href="{% url 'loginuser' %}">Войти</a>
+<a href="{% url 'signupuser' %}">Зарегистрироваться</a>
 
 
 {% endif %}
