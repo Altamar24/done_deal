@@ -61,10 +61,14 @@ def createtodo(request):
             return render(request, 'todo\createtodo.html', {'form': TodoForm(),'error':'Переданы неверные данные'})
 
 
-
 def currenttodos(request):
     todos = Todo.objects.filter(user=request.user, datecompleted__isnull=True) # выводим задачи авторизованного пользователя также невыполненные задачи
     return render(request, 'todo/currenttodos.html', {'todos':todos})
+
+
+def completedtodos(request):
+    todos = Todo.objects.filter(user=request.user, datecompleted__isnull=False).order_by('datecompleted') # выполненные задачи,сортировка по дате
+    return render(request, 'todo/completedtodos.html', {'todos':todos})
 
 
 def viewtodo(request, todo_pk):
@@ -79,7 +83,7 @@ def viewtodo(request, todo_pk):
             return redirect('currenttodos')
         except ValueError:
             return render(request, 'todo/viewtodo.html', {'todo':todo, 'form':form, 'error':'Неверная информация'})
-        
+   
 
 def completetodo(request, todo_pk):
     todo = get_object_or_404(Todo, pk=todo_pk, user=request.user)
@@ -87,11 +91,10 @@ def completetodo(request, todo_pk):
         todo.datecompleted = timezone.now()
         todo.save()
         return redirect('currenttodos')
-    
+
 
 def deletetodo(request, todo_pk):
     todo = get_object_or_404(Todo, pk=todo_pk, user=request.user)
     if request.method == 'POST':
         todo.delete()
         return redirect('currenttodos')
-

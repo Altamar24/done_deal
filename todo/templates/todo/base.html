@@ -2,6 +2,10 @@
 
 Вы вошли в систему как {{ user.username }}
 
+<a href="{% url 'createtodo' %}">Создать задачу</a>
+<a href="{% url 'currenttodos' %}">Текущие задачи</a>
+<a href="{% url 'completedtodos' %}">Выполненные задачи</a>
+
 <form action="{% url 'logoutuser' %}" method="POST">
     {% csrf_token %}
 <button type="submit">Выйти</button>
