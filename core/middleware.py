@@ -24,9 +24,11 @@ class RequestLogger:
 
         data = {
             'path': request.path,
+            'method': request.method,
             'request_total': round(time.monotonic() - timestamp, 3),
             'sql_count': round(thread_locals.sql_count, 3),
             'sql_total': round(thread_locals.sql_total, 3),
+            'username': request.user.username,
         }
 
         with open('request.log', 'a') as f: # сохранение информации о запросах в файл request.log

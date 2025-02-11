@@ -3,3 +3,12 @@
 {"path": "/current/", "request_total": 0.047, "sql_count": 3, "sql_total": 0.0}
 {"path": "/completed/", "request_total": 0.047, "sql_count": 3, "sql_total": 0.0}
 {"path": "/current/", "request_total": 0.031, "sql_count": 3, "sql_total": 0.0}
+{"path": "/favicon.ico", "request_total": 0.031, "sql_count": 0, "sql_total": 0}
+{"path": "/", "request_total": 0.047, "sql_count": 2, "sql_total": 0.0}
+{"path": "/current/", "request_total": 0.047, "sql_count": 3, "sql_total": 0.016}
+{"path": "/todo/3", "request_total": 0.047, "sql_count": 3, "sql_total": 0.0}
+{"path": "/todo/3/delete", "request_total": 0.047, "sql_count": 4, "sql_total": 0.0}
+{"path": "/current/", "request_total": 0.047, "sql_count": 3, "sql_total": 0.0}
+{"path": "/todo/2", "method": "GET", "request_total": 0.062, "sql_count": 3, "sql_total": 0.0}
+{"path": "/current/", "method": "GET", "username": "admin", "request_total": 0.047, "sql_count": 3, "sql_total": 0.0}
+{"path": "/todo/1", "method": "GET", "request_total": 0.172, "sql_count": 3, "sql_total": 0.0, "username": "admin"}
