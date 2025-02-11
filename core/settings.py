@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'core',
         'NAME': 'donedeal',
         'USER': 'postgres',
         'PASSWORD': '7319',
@@ -121,6 +121,10 @@ LOGGING = {
     },
     'loggers': {
         'core.middleware': {
+            'handlers': ['xyz_console'],
+            'level': 'INFO'
+        },
+        'core.base': {
             'handlers': ['xyz_console'],
             'level': 'INFO'
         }
