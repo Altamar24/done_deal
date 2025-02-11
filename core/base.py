@@ -1,8 +1,8 @@
 import time
 from contextlib import contextmanager
 
-from django.db.backends.postgresql.base import DatabaseWrapper as DjangoDatabaseWrapper
-from django.db.backends.utils import CursorWrapper as DjangoCursorWrapper
+from django.db.backends.postgresql.base import DatabaseWrapper
+from django.db.backends.utils import CursorWrapper
 from django.utils.encoding import force_str
 import logging
 
@@ -31,7 +31,7 @@ def make_safe(s):
    return s.replace('*', '').replace('\\', '').replace('%', '')
 
 
-class CursorWrapper(DjangoCursorWrapper): # переопределяем метод execute
+class CursorWrapper(CursorWrapper): # переопределяем метод execute
    def execute(self, sql, params=None):
        path = getattr(thread_locals, 'path', '')
        if path:
@@ -42,7 +42,7 @@ class CursorWrapper(DjangoCursorWrapper): # переопределяем мет�
            return super().execute(sql, params)
 
 
-class DatabaseWrapper(DjangoDatabaseWrapper):
+class DatabaseWrapper(DatabaseWrapper):
    def create_cursor(self, name=None):
        cursor = super().create_cursor(name)
        return CursorWrapper(cursor, self)

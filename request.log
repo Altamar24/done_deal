@@ -1,1 +1,5 @@
 {"path": "/current/", "request_total": 0.062, "sql_count": 3, "sql_total": 0.015}
+{"path": "/current/", "request_total": 0.063, "sql_count": 3, "sql_total": 0.015}
+{"path": "/current/", "request_total": 0.047, "sql_count": 3, "sql_total": 0.0}
+{"path": "/completed/", "request_total": 0.047, "sql_count": 3, "sql_total": 0.0}
+{"path": "/current/", "request_total": 0.031, "sql_count": 3, "sql_total": 0.0}
